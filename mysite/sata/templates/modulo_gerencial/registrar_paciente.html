@@ -1,0 +1,24 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Registrar Paciente</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <h2>Novo Paciente</h2>
+        {{ paciente_form.as_p }}
+        
+        <h3>Responsável pelo Paciente</h3>
+        {{ responsavel_form.as_p }}
+    
+        <h3>Dados de Usuário do Responsável</h3>
+        {{ user_form.as_p }}
+        
+        <button type="submit">Salvar</button>
+        <button type="reset">Cancelar</button>
+    </form>
+    
+
+    <a href="{% url 'pacientes' %}">Voltar para a lista de pacientes</a>
+{% endblock %}

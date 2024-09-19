@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Responsável</title>
+</head>
+<body>
+    <h1>Registrar um Novo Responsável</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <h2>Informações do Usuário</h2>
+        {{ user_form.as_p }}
+
+        <h2>Informações do Responsável</h2>
+        {{ responsavel_form.as_p }}
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <a href="{% url 'responsaveis' %}">Ver Lista de Responsáveis</a>
+</body>
+</html>

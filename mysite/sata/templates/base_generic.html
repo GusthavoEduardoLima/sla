@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul> Gerencia
+        <li><a href="{% url 'pacientes' %}">Pacientes</a></li>
+        <li><a href="{% url 'responsaveis' %}">Responsáveis</a></li>
+        <li><a href="{% url 'profissionais' %}">Profissionais</a></li>
+    </ul>
+    <ul>
+        <li><a href="{% url 'avaliacao' %}">Avaliação Cars</a></li>
+    </ul>
+    {% block content %}
+        <!-- O conteúdo específico da página será inserido aqui -->
+     {% endblock %}
+</body>
+</html>

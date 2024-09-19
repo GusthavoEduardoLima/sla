@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Editar Profissional</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar Alterações</button>
+        <a href="{% url 'profissionais' %}">Cancelar</a>
+    </form>
+{% endblock %}

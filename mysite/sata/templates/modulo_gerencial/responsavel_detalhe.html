@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Detalhes do Responsável </h1>
+
+    <p><strong>Nome:</strong> {{ object.nome }}</p>
+
+    <p><strong>Telefone:</strong> {{ object.telefone }}</p>
+    <p><strong> CPF:</strong>{{ object.cpf }}</p>
+    <p><strong>Nascimento:</strong>{{ object.nascimento }}</p>
+    <p><strong>endereco</strong>{{ object.endereco }}</p>
+    <p><strong>bairro </strong>{{ object.bairro}}</p>
+    <p><strong>CEP</strong>{{ object.cep }}</p>
+    <p><strong>cidade </strong>{{ object.cidade }}</p>
+    <p><strong>estado</strong>{{ object.estado }}</p>
+    <p><strong>celular</strong>{{ object.celular }}</p>
+    <p><strong>sexo</strong>{{ object.sexo }}</p>
+    
+   
+    
+     
+    
+   
+    
+     
+    
+    
+
+    <!-- Links para editar ou deletar -->
+    <a href="{% url 'editar_responsavel' object.id %}">
+        <i class="fa fa-pencil"></i> Editar
+    </a>
+    <a href="{% url 'deletar_responsavel' object.id %}" onclick="return confirm('Tem certeza que deseja deletar?');">
+        <i class="fa fa-trash"></i> Deletar
+    </a>
+    <br>
+    <a href="{% url 'responsaveis' %}">Voltar para a lista</a>
+{% endblock %}

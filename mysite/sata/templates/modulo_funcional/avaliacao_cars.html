@@ -1,0 +1,20 @@
+<!-- nova_avaliacao.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nova Avaliação CARS</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="voltar">Voltar</button>
+        {% if questao_atual == total_questoes %}
+            <button type="submit" name="finalizar">Finalizar</button>
+        {% else %}
+            <button type="submit" name="avancar">Avançar</button>
+        {% endif %}
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório CARS</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Relatório das Avaliações CARS por Profissional</h2>
+    <canvas id="graficoCARS" width="400" height="200"></canvas>
+
+    <script>
+        // Converta a string JSON para um objeto JavaScript
+        const dadosGrafico = JSON.parse('{{ dados_grafico|escapejs }}');
+
+        console.log(dadosGrafico);  // Para conferir no console
+
+        // Verificando se é um array antes de continuar
+        if (Array.isArray(dadosGrafico)) {
+            // Extraindo os dados
+            const nomesProfissionais = dadosGrafico.map(dado => dado.relacao__profissional__nome);
+            const mediasQ1 = dadosGrafico.map(dado => dado.media_q1);
+            const mediasQ2 = dadosGrafico.map(dado => dado.media_q2);
+            const mediasResultados = dadosGrafico.map(dado => dado.media_resultado);
+
+            // Configuração do gráfico
+            const ctx = document.getElementById('graficoCARS').getContext('2d');
+            const graficoCARS = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: nomesProfissionais,
+                    datasets: [
+                        {
+                            label: 'Média Q1',
+                            data: mediasQ1,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Média Q2',
+                            data: mediasQ2,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Média Resultados',
+                            data: mediasResultados,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error('dadosGrafico não é um array:', dadosGrafico);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Lista de Responsáveis</h1>
+    
+    <ul>
+        {% for responsavel in responsaveis %}
+            <li>
+                <td>{{ responsavel.nome }}</td>
+        <td>
+            {% for paciente in responsavel.paciente_set.all %}
+                            
+                {{ paciente.nome }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </td>
+                <a href="{% url 'visualizar_responsavel' responsavel.id %}">
+                    visualizar
+                </a>
+                <a href="{% url 'editar_responsavel' responsavel.id %}">
+               editar
+                </a>
+                <a href="{% url 'deletar_responsavel' responsavel.id %}">
+                    deletar</a>
+            
+            </li>
+        {% empty %}
+            <li>Não há responsáveis cadastrados.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'registrar_responsavel' %}">Adicionar Novo Responsável</a>
+
+{% endblock %}

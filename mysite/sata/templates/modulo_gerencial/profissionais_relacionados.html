@@ -1,0 +1,28 @@
+<!-- profissionais_relacionados.html -->
+<h2>Profissionais Relacionados ao Paciente {{ paciente.nome }}</h2>
+
+<!-- Listar os profissionais relacionados -->
+<ul>
+    {% for profissional in profissionais %}
+    <li>
+        {{ profissional.nome }}
+        <!-- Botão para remover a relação -->
+        <form method="post" action="{% url 'remover_relacao' paciente.id profissional.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Remover Relação</button>
+        </form>
+    </li>
+    {% empty %}
+    <li>Nenhum profissional relacionado a este paciente.</li>
+    {% endfor %}
+</ul>
+
+<!-- Formulário para adicionar novo profissional à relação -->
+<h3>Adicionar Profissional</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ relacao_form.as_p }}
+    <button type="submit" class="btn btn-success">Adicionar</button>
+</form>
+
+<a href="{% url 'visualizar_pacientes' paciente.id %}" class="btn btn-secondary">Voltar</a>

@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Deletar Profissional</h1>
+
+    <p>Tem certeza que deseja deletar o profissional <strong>{{ object.nome }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim, deletar</button>
+        <a href="{% url 'profissionais' %}">Cancelar</a>
+    </form>
+{% endblock %}

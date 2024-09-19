@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Média de Pontuações CARS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="myChart"></canvas>
+
+  <script>
+    // Ensure labels, q1_data, q2_data, and resultado_data are available from your Django view
+    const labels = JSON.parse('{{ labels|safe }}'); // Assuming these are JSON-formatted strings from Django
+    const q1_data = JSON.parse('{{ q1_data|safe }}');
+    const q2_data = JSON.parse('{{ q2_data|safe }}');
+    const resultado_data = JSON.parse('{{ resultado_data|safe }}');
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels, // Use the parsed labels array directly
+        datasets: [
+          {
+            label: 'Questão 1',
+            data: q1_data, // Use the parsed q1_data array directly
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Questão 2',
+            data: q2_data, // Use the parsed q2_data array directly
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Resultado Final',
+            data: resultado_data, // Use the parsed resultado_data array directly
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

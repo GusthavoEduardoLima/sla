@@ -1,0 +1,20 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Detalhes do Profissional</h1>
+
+    <p><strong>Nome:</strong> {{ object.nome }}</p>
+
+    <p><strong>Telefone:</strong> {{ object.telefone }}</p>
+
+
+    <!-- Links para editar ou deletar -->
+    <a href="{% url 'editar_profissional' object.id %}">
+        <i class="fa fa-pencil"></i> Editar
+    </a>
+    <a href="{% url 'deletar_profissional' object.id %}" onclick="return confirm('Tem certeza que deseja deletar?');">
+        <i class="fa fa-trash"></i> Deletar
+    </a>
+    <br>
+    <a href="{% url 'profissionais' %}">Voltar para a lista</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Lista de pacientes</h1>
+    
+    <ul>
+        <a href="{% url 'grafico' %}">todos os grafico</ul>a>
+        {% for paciente in pacientes %}
+            <li>{{ paciente.nome }}
+                <a href="{% url 'avaliacao_cars' paciente.id  %}"> nova Avaliação</a>
+                <a href="{% url 'relatorio' %}">ver relatorios</a>
+            </li>
+
+            
+        {% empty %}
+            <li>Não há pacientes cadastrados.</li>
+        {% endfor %}
+    </ul>
+
+   
+{% endblock %}
